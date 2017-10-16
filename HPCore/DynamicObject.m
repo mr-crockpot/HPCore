@@ -11,10 +11,11 @@
 
 @implementation DynamicObject
 
--(DynamicObject *) initWithView: (UIView *) view vector: (Vector *) vector container: (UIView *) container{
+-(DynamicObject *) initWithView: (UIView *) view vector: (Vector *) vector container: (UIView *) container manager: (PhysicsManager *) manager {
     self.view = view;
     self.container = container;
     self.vector = vector;
+    self.manager = manager;
     return self;
 }
 
@@ -29,7 +30,11 @@
 -(void)stepTime: (double) time {
     CGRect c = self.view.frame;
     CGRect n = CGRectMake(c.origin.x + _vector.x * time, c.origin.y + _vector.y * time, c.size.width, c.size.height);
+    _vector.x *= _manager.friction * time;
+    _vector.y *= _manager.friction * time;
     int f = [self view:n isOutsideOf:_container.frame];
+    if (f)
+        n = [_manager limitRect:n toBounds:_container.frame];
     if (f==1)
         _vector.x *= -1;
     if (f==2)

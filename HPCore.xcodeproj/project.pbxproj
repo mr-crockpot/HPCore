@@ -63,6 +63,7 @@
 		E3070FE31F9404ED001C2EAC /* PhysicsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhysicsManager.m; sourceTree = "<group>"; };
 		E3070FE51F941C99001C2EAC /* GrabbableObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabbableObject.h; sourceTree = "<group>"; };
 		E3070FE61F941C99001C2EAC /* GrabbableObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrabbableObject.m; sourceTree = "<group>"; };
+		E3F9CD4D1F9449D6007AD1AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 		E3070F9D1F93FE98001C2EAC = {
 			isa = PBXGroup;
 			children = (
+				E3F9CD4D1F9449D6007AD1AE /* README.md */,
 				E3070FA81F93FE98001C2EAC /* HPCore */,
 				E3070FC11F93FE99001C2EAC /* HPCoreTests */,
 				E3070FCC1F93FE99001C2EAC /* HPCoreUITests */,

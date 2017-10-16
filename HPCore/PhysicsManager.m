@@ -20,6 +20,7 @@ double _speed;
 
 -(PhysicsManager *) init {
     self.objects = [[NSMutableArray alloc] init];
+    self.friction = 1;
     return self;
 }
 
@@ -51,6 +52,28 @@ double _speed;
 
 -(void) stop {
     [_timer invalidate];
+}
+
+#pragma mark UTILS
+
+-(CGRect)limitRect: (CGRect) rect toBounds: (CGRect) otherRect {
+    NSLog(@"r: %@", NSStringFromCGRect(rect));
+    NSLog(@"o: %@", NSStringFromCGRect(otherRect));
+
+    if (rect.origin.x < otherRect.origin.x){
+        rect.origin.x = otherRect.origin.x;
+    }
+    if (rect.origin.y < otherRect.origin.y){
+        rect.origin.y = otherRect.origin.y;
+    }
+    if (rect.origin.x + rect.size.width > otherRect.origin.x + otherRect.size.width) {
+        rect.origin.x = otherRect.origin.x + otherRect.size.width - rect.size.width;
+    }
+    if (rect.origin.y + rect.size.height > otherRect.origin.y + otherRect.size.height) {
+        rect.origin.y = otherRect.origin.y + otherRect.size.height - rect.size.height;
+    }
+
+    return rect;
 }
 
 

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "DynamicObject.h"
+
+@class DynamicObject; //this fixes circular import issue
 
 @interface PhysicsManager : NSObject
 
@@ -16,6 +17,9 @@
 -(void) runAtFPS: (int) fps;
 -(void) stop;
 -(void) addObject:(DynamicObject *)object;
+-(CGRect)limitRect: (CGRect) rect toBounds: (CGRect) otherRect;
 
 @property NSMutableArray *objects;
+@property double friction;
+
 @end

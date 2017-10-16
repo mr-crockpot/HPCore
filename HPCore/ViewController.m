@@ -25,8 +25,9 @@
     v.layer.backgroundColor = [[UIColor redColor] CGColor];
     [self.view addSubview:v];
     Vector *r = [[Vector alloc] initWithX:200 Y:100];
-    GrabbableObject *d = [[GrabbableObject alloc] initWithView:v vector:r container:self.view];
     PhysicsManager *f = [[PhysicsManager alloc] init];
+    [f setFriction:0.9999];
+    GrabbableObject *d = [[GrabbableObject alloc] initWithView:v vector:r container:self.view manager:f];
     [f addObject:d];
     [f runAtFPS:64];
 }

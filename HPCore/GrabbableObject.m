@@ -14,8 +14,8 @@ UILongPressGestureRecognizer *_touch;
 NSMutableArray *_touchPositionsX;
 NSMutableArray *_touchPositionsY;
 
--(DynamicObject *) initWithView: (UIView *) view vector: (Vector *) vector container: (UIView *) container{
-    self = [super initWithView:view vector:vector container:container];
+-(DynamicObject *) initWithView: (UIView *) view vector: (Vector *) vector container: (UIView *) container manager:(PhysicsManager *)manager{
+    self = [super initWithView:view vector:vector container:container manager:manager];
     _touch = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(grab:)];
     [self.view addGestureRecognizer:_touch];
     _touch.minimumPressDuration = 0.0;
@@ -31,10 +31,14 @@ NSMutableArray *_touchPositionsY;
     }
     
     if (tapRecognizer.state == UIGestureRecognizerStateChanged) {
-        [self.view setFrame:CGRectMake(c.x - (self.view.frame.size.width  / 2),
-                                       c.y - (self.view.frame.size.height / 2),
-                                       self.view.frame.size.width,
-                                       self.view.frame.size.height)];
+        CGRect n = CGRectMake(c.x - (self.view.frame.size.width  / 2),
+                                     c.y - (self.view.frame.size.height / 2),
+                                     self.view.frame.size.width,
+                                     self.view.frame.size.height);
+        n = [self.manager limitRect:n toBounds:self.container.frame];
+
+        
+        [self.view setFrame: n];
         [_touchPositionsX addObject:[NSNumber numberWithFloat:c.x]];
         [_touchPositionsY addObject:[NSNumber numberWithFloat:c.y]];
         if (_touchPositionsX.count > 10) {
