@@ -21,5 +21,6 @@
 
 @property NSMutableArray *objects;
 @property double friction;
+@property double gravity;
 
 @end

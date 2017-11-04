@@ -31,6 +31,8 @@ double _speed;
 -(void) stepTime:(double) time {
     for (DynamicObject *object in _objects) {
         [object stepTime:time * _scaling];
+        object.vector.x *= (1-(_friction * time * _scaling));
+        object.vector.y *= (1-(_friction * time * _scaling));
     }
 }
 
@@ -57,8 +59,6 @@ double _speed;
 #pragma mark UTILS
 
 -(CGRect)limitRect: (CGRect) rect toBounds: (CGRect) otherRect {
-    NSLog(@"r: %@", NSStringFromCGRect(rect));
-    NSLog(@"o: %@", NSStringFromCGRect(otherRect));
 
     if (rect.origin.x < otherRect.origin.x){
         rect.origin.x = otherRect.origin.x;

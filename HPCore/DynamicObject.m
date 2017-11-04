@@ -30,8 +30,6 @@
 -(void)stepTime: (double) time {
     CGRect c = self.view.frame;
     CGRect n = CGRectMake(c.origin.x + _vector.x * time, c.origin.y + _vector.y * time, c.size.width, c.size.height);
-    _vector.x *= _manager.friction * time;
-    _vector.y *= _manager.friction * time;
     int f = [self view:n isOutsideOf:_container.frame];
     if (f)
         n = [_manager limitRect:n toBounds:_container.frame];

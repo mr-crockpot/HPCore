@@ -55,6 +55,7 @@ NSMutableArray *_touchPositionsY;
         double dy = [((NSNumber *)_touchPositionsY[_touchPositionsY.count - 1]) doubleValue] -
                                              [((NSNumber *)_touchPositionsY[0]) doubleValue];
         dy *= 4;
+        dx *= 4;
         self.vector = [[Vector alloc] initWithX:dx Y:dy];
         
         //self.vector = [[Vector alloc] initWithX:0 Y:-300];
